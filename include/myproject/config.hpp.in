@@ -1,0 +1,21 @@
+/** @file config.hpp
+ * @brief Contains macros defining the project name and version
+ */
+#pragma once
+
+// clang-format off
+
+/// The name of the package
+#define @PROJECT_NAME_SAN@_NAME "@PROJECT_NAME@"
+/// The major version of the package
+#define @PROJECT_NAME_SAN@_VERSION_MAJOR @CMAKE_PROJECT_VERSION_MAJOR@
+/// The minor version of the package
+#define @PROJECT_NAME_SAN@_VERSION_MINOR @CMAKE_PROJECT_VERSION_MINOR@
+/// The patch version of the package
+#define @PROJECT_NAME_SAN@_VERSION_PATCH @CMAKE_PROJECT_VERSION_PATCH@
+/// The version string of the package
+#define @PROJECT_NAME_SAN@_VERSION_STRING "@CMAKE_PROJECT_VERSION@"
+/// The package version formatted as a hex number
+#define @PROJECT_NAME_SAN@_VERSION_HEX @PROJECT_VERSION_HEX@
+
+// clang-format on

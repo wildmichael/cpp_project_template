@@ -1,0 +1,18 @@
+{
+		"testMate.cpp.debug.configTemplate": {
+			"type": "cppvsdbg",
+			"program": "${exec}",
+			"args": "${argsArray}",
+			"cwd": "${cwd}",
+			"env": "${envObj}",
+			"sourceFileMap": "${sourceFileMapObj}",
+			"externalConsole": false
+		},
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "files.trimFinalNewlines": true,
+    "files.exclude": {
+        "**/build/**": true
+    }
+}

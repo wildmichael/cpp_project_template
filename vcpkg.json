@@ -1,0 +1,13 @@
+{
+    "name": "myproject",
+    "version-string": "0.1.0",
+    "description": "A short project description",
+    "maintainers": [
+        "John Doe"
+    ],
+    "license": "MIT",
+    "dependencies": [
+        "catch2",
+        "fmt"
+    ]
+}

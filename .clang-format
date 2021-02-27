@@ -1,0 +1,30 @@
+---
+Language:        Cpp
+BasedOnStyle:  LLVM
+AlwaysBreakTemplateDeclarations: true
+AllowShortFunctionsOnASingleLine: Empty
+AccessModifierOffset: -4
+AlignConsecutiveAssignments: true
+BreakBeforeBraces: Allman
+BreakBeforeInheritanceComma: true
+BreakConstructorInitializers: BeforeComma
+ColumnLimit:     100
+IncludeBlocks:   Regroup
+IndentCaseLabels: true
+IndentCaseBlocks: true
+IndentWidth:     4
+PointerAlignment: Left
+SpaceInEmptyBlock: true
+TabWidth:        4
+IncludeCategories:
+  # matches thirdparty library headers (usually including a /)
+  - Regex:           '(^<[[:alnum:]]+/|[[:alnum:]]\.h(pp|h)?>)'
+    Priority:        2
+  # should match standard headers
+  - Regex:           '<[[:alnum:]_]+>'
+    Priority:        3
+  # all other headers
+  - Regex:           '.*'
+    Priority:        1
+    SortPriority:    0
+...
