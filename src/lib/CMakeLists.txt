@@ -17,6 +17,23 @@ set(PUBLIC_HEADERS
     ${CMAKE_BINARY_DIR}/include/${PROJECT_NAME}/${PROJECT_NAME}_export.hpp
     )
 
+# create a pre-compiled header with commonly used headers that will be
+# force-injected into this libraries sources. Other shared library targets can
+# reuse this pre-compiled header without rebuilding their own by using
+# target_precompiled_headers(otherlib REUSE_FROM ${PROJECT_NAME}).
+# do not mark these as INTERFACE or PUBLIC, you don't want to force
+# downstream targets (even third-party ones!) to build a precompiled header with
+# the headers you thought were useful :-)
+target_precompile_headers(${PROJECT_NAME}
+    PRIVATE
+        "<fmt/format.h>"
+        "<iostream>"
+        "<ostream>"
+        "<sstream>"
+        "<string>"
+        "<vector>"
+    )
+
 # add sources to the library target
 target_sources(${PROJECT_NAME}
     PRIVATE
