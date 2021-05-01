@@ -45,7 +45,7 @@ jobs:
           # The key includes: hash of the vcpkg.json file, the hash of the vcpkg Git commit id, and the used vcpkg's triplet. The vcpkg's commit id would suffice, but computing an hash out it does not harm.
           # Note: given a key, the cache content is immutable. If a cache entry has been created improperly, in order the recreate the right content the key must be changed as well, and it must be brand new (i.e. not existing already).
           key: |
-            ${{ hashFiles( 'vcpkg.json' ) }}-${{ hashFiles( 'build/vcpkg_installed/vcpkg/status' )}}-${{ matrix.triplet }}-invalidate
+            ${{ runner.os }}-vcpkg_json_${{ hashFiles( 'vcpkg.json' ) }}-triplet_${{ matrix.triplet }}-invalidate
 
       - name: Configure CMake
         # Use a bash shell so we can use the same syntax for environment variable
@@ -71,8 +71,22 @@ jobs:
         shell: bash
         run: ctest --output-on-failure --verbose -C $BUILD_TYPE
 
+      - name: Install Python 3.8
+        id: install_py
+        uses: actions/setup-python@v2
+        with:
+          architecture: "x64"
+          python-version: "3.8"
+
+      - name: Restore venv from cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/venv
+          key: |
+            ${{ runner.os }}-venv-pub@v1.13-py${{ steps.install_py.outputs.python-version }}-invalidate"
+
       - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v1.12
+        uses: wildmichael/publish-unit-test-result-action/composite@master
         if: always()
         with:
           files: build/test/out/*.xml
