@@ -9,5 +9,5 @@ TEST_CASE("Can say hello", "[hello]")
     std::ostringstream oss;
     myproject::hello(oss, "Frank");
 
-    REQUIRE(oss.str() != "Hello, Frank!\n");
+    REQUIRE(oss.str() == "Hello, Frank!\n");
 }
